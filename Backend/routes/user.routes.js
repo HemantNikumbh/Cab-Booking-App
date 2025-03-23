@@ -11,6 +11,13 @@ router.post("/register",[
 userController.register
 );  // Register a new user
 
+router.post("/Login",[
+    body("email").isEmail().withMessage("Email is required"),
+    body("password").isLength({min:5}).withMessage("Password is required"),
+
+],
+userController.userlogin
+)
 
 
 
