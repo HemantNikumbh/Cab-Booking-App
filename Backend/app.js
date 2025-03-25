@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const express = require('express');
 const connectDB = require('./db/db');
+const cookies = require('cookie-parser');
 const userRoutes = require('./routes/user.routes');
 
 connectDB();
@@ -9,6 +10,7 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors());
+app.use(cookies());
 app.use(express.json());    // Parse incoming request with JSON payloads
 
 // app.get('/', (req, res) => {
