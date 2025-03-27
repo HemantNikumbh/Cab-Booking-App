@@ -4,6 +4,8 @@ const express = require('express');
 const connectDB = require('./db/db');
 const cookies = require('cookie-parser');
 const userRoutes = require('./routes/user.routes');
+const captainRoutes = require('./routes/captain.routes');
+// const captainRoutes = require('./routes/captain.routes');
 
 connectDB();
 const app = express();
@@ -19,4 +21,7 @@ app.use(express.json());    // Parse incoming request with JSON payloads
 app.use(express.urlencoded({ extended: true }));    // Parse incoming request with urlencoded payloads
 app.use(express.json());    // Parse incoming request with JSON payloads
 app.use("/user",userRoutes);
+app.use('/captains', captainRoutes);
+
+
 module.exports = app;   // Export the app module
