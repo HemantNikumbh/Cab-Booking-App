@@ -1,37 +1,41 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState} from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserDataContext } from "../context/UserContext";
+import { CaptainDataContext } from "../context/CaptainContext";
 import axios from "axios";
 
-export const UserProtectWrapper = ({ children }) => {
+export const CaptainProtectWrapper  = ({ children }) => {
     
     const token = localStorage.getItem('token')
-    const{user,setUser} = useContext(UserDataContext)
-    const[isLodding,setIsLodding] = useState(true)  
+    const {captain,setCaptain} = useContext(CaptainDataContext)
+    const[isLodding,setIsLodding] = useState(true)
     const navigate = useNavigate()
 
-    console.log(token)
 
+    console.log(token)
     useEffect(()=>{
         if(!token){
-            navigate('/UserLogin')
+            navigate('/CaptainLogin')
         }
 
-        axios.get("http://localhost:4000/user/profile",{
+        axios.get("http://localhost:4000/captains/profile",{
             headers:{
                 Authorization: `Bearer ${token}`
             }
         }).then(response =>{
             if(response.status===200){
-                setUser(response.data.user)
+                setCaptain(response.data.captain)
                 setIsLodding(false)
             }
         }).catch(err =>{
             localStorage.removeItem("token")
-            navigate("/UserLogin")
+            navigate("/CaptainLogin")
         })
+
+
     },[token])
+
+
 
     if(isLodding){
         return(

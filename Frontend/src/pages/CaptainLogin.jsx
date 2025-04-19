@@ -1,21 +1,38 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CaptainDataContext } from "../context/CaptainContext";
+import { useNavigate } from "react-router-dom"; 
+import axios from "axios";
+
 
 export const CaptainLogin = () =>{
-    const[email,setemail] = useState(" ")
-    const[password,setpassword] = useState(" ")
-    const[captainData,setCaptainData] = useState({})
+    const[email,setEmail] = useState('')
+    const[password,setPassword] = useState('')
+    // const[captainData,setCaptainData] = useState({})
+    const {captain,setCaptain} = useContext(CaptainDataContext) 
+    const navigate = useNavigate()  
 
-    const submitHandler = (e) =>{
+
+
+    const submitHandler = async(e) =>{
         e.preventDefault();
         // console.log(email,password)
-        setCaptainData({
+        const captain = {
             email:email,
             password:password
-        })
-        console.log(captainData)
-        setemail(" ")
-        setpassword(" ")
+        }
+        const response = await axios.post("http://localhost:4000/captains/login",captain)
+        if(response.status === 200){
+            const data = response.data
+            setCaptain(data.captain)
+            localStorage.setItem("token",data.token)
+            navigate("/CaptainHome")
+        }
+
+        // console.log(captainData)
+        setEmail('')
+        setPassword('')
 
     }
 
@@ -31,7 +48,7 @@ export const CaptainLogin = () =>{
                 placeholder="email@example.com" 
                 value={email}
                 onChange={(e)=>{
-                    setemail(e.target.value)
+                    setEmail(e.target.value)
                 }}
                 required
                 />
@@ -44,7 +61,7 @@ export const CaptainLogin = () =>{
                 placeholder="Password"  
                 value={password}
                 onChange={(e)=>{
-                    setpassword(e.target.value)
+                    setPassword(e.target.value)
                 }} 
                 required
                 />
