@@ -51,7 +51,7 @@ export const Home = () =>{
             })
         }else{
             gsap.to(vehiclepanelref.current,{
-                transform:"translatey(100%"
+                transform:"translateY(100%)"
             })
         }
      },[vehiclePanelOpen])
@@ -64,7 +64,7 @@ export const Home = () =>{
             })
         }else{
             gsap.to(ConformRideRef.current,{
-                transform:"translatey(100%"
+                transform:"translateY(100%)"
             })
         }
      },[conformRidePanel])
@@ -77,7 +77,7 @@ export const Home = () =>{
             })
         }else{
             gsap.to(vehicleFoundref.current,{
-                transform:"translatey(100%"
+                transform:"translateY(100%)"
             })
         }
      },[vehicleFound])
@@ -90,7 +90,7 @@ export const Home = () =>{
             })
         }else{
             gsap.to(WaitingForDriverref.current,{
-                transform:"translatey(100%"
+                transform:"translateY(100%)"
             })
         }
      },[waitingForDriver])
@@ -165,7 +165,7 @@ export const Home = () =>{
                 <LookingForDriver setVehicleFound={setVehicleFound} />
             </div>
 
-            <div ref={WaitingForDriverref} className="w-full fixed z-10 bg-white bottom-0  px-3 py-6 pt-12">
+            <div ref={WaitingForDriverref} className="w-full fixed z-10 bg-white bottom-0   px-3 py-6 pt-12">
                 <WaitingForDriver setWaitingForDriver={setWaitingForDriver} />
             </div>
 
