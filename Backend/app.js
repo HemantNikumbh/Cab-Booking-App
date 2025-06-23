@@ -5,7 +5,7 @@ const connectDB = require('./db/db');
 const cookies = require('cookie-parser');
 const userRoutes = require('./routes/user.routes');
 const captainRoutes = require('./routes/captain.routes');
-const mapRoutes = require('./routes/map.routes');   // Import map routes
+  // Import map routes
 // const captainRoutes = require('./routes/captain.routes');
 
 connectDB();
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));    // Parse incoming request wi
 app.use(express.json());    // Parse incoming request with JSON payloads
 app.use("/user",userRoutes);
 app.use('/captains', captainRoutes);
-app.use('/map', mapRoutes);   // Use map routes
+//app.use('/map', mapRoutes);   // Use map routes
 
 
 
